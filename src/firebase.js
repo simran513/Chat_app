@@ -9,15 +9,28 @@ import { getStorage } from "firebase/storage";
 // const result = dotenv.config()
 // dotenv.config();
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAWUcMTCOwp5hZKMUK0FzTdBmNl3M9BIMY",
+//   authDomain: "chat-demo-c245b.firebaseapp.com",
+//   projectId: "chat-demo-c245b",
+//   storageBucket: "chat-demo-c245b.appspot.com",
+//   messagingSenderId: "140428530831",
+//   appId: "1:140428530831:web:31456269c4509396648cfa",
+//   measurementId: "G-CHSN5EEE70"
+// };
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyAWUcMTCOwp5hZKMUK0FzTdBmNl3M9BIMY",
-  authDomain: "chat-demo-c245b.firebaseapp.com",
-  projectId: "chat-demo-c245b",
-  storageBucket: "chat-demo-c245b.appspot.com",
-  messagingSenderId: "140428530831",
-  appId: "1:140428530831:web:31456269c4509396648cfa",
-  measurementId: "G-CHSN5EEE70"
-};
+  apiKey: "AIzaSyBrOcxN6SrT47zfzVHbn7ACBjUSFGTrFG8",
+  authDomain: "miku-ebe6e.firebaseapp.com",
+  projectId: "miku-ebe6e",
+  storageBucket: "miku-ebe6e.appspot.com",
+  messagingSenderId: "507704133605",
+  appId: "1:507704133605:web:5389bdf0e881b7867f510c",
+  measurementId: "G-2B71939HGL"
+}
+
+
 
 const app = initializeApp(firebaseConfig);
 // console.log(process.env.api_key)

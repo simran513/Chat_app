@@ -24,6 +24,8 @@ export default function Input() {
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
+        const docRef = doc(db, "chats", data.chatId);
+const docSnap = await getDoc(docRef);
     const uuid =crypto.randomUUID()
     if (img) {
       const storageRef = ref(storage,uuid);
@@ -36,7 +38,22 @@ export default function Input() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+        if(docSnap.data()===undefined)
+            
             await setDoc(doc(db, "chats", data.chatId), {
+              messages : arrayUnion({
+                
+                            id: uuid,
+                            text,
+                            senderId: currentUser.uid,
+                            date: Timestamp.now(),
+                            img: downloadURL,
+                      })
+            })
+              
+            
+            
+            await updateDoc(doc(db, "chats", data.chatId), {
               messages : arrayUnion({
     // Issue is Over-writting instead of Appending !!
     /*
@@ -54,7 +71,17 @@ export default function Input() {
       );
     } else {
       // console.log('Data.chatId : ',data.chatId)
-      await setDoc(doc(db, "chats", data.chatId), {
+      if(docSnap.data()===undefined)
+            await setDoc(doc(db, "chats", data.chatId), {
+              messages:arrayUnion({
+                id: uuid,
+          text,
+          senderId: currentUser.uid,
+          date: Timestamp.now(),
+              })
+
+            })
+      await updateDoc(doc(db, "chats", data.chatId), {
         messages : arrayUnion({
           id: uuid,
           text,
@@ -65,10 +92,6 @@ export default function Input() {
 
     }
 
-    const docRef = doc(db, "chats", data.chatId);
-const docSnap = await getDoc(docRef);
-  const msg=docSnap.data().messages
-  console.log("Document data:", msg);
 
 
 
